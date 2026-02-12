@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 본인의 디렉토리 경로이고 이 namespace를 그대로 dao에서 경로로 사용 -->
+<mapper namespace="org.example.practice.mapper.MemberMapper">
+
+    <!-- DB 칼럼명과 맞춰야함. 따라서, VO 내의 필드명인 memberId는 db 칼럼명과 다르므로 맞추는 과정이 필요함
+         member_id(DB 칼럼명과 동일)을 Alias(VO 필드명)로 선언
+         where 절 내에서는 db 컬럼명 = #{VO 필드명}-->
+    <select id="findById" parameterType="long" resultType="org.example.practice.domain.MemberVO">
+        SELECT member_id AS memberId, username, age
+        FROM member
+        WHERE member_id = #{memberId}
+    </select>
+
+
+</mapper>
